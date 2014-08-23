@@ -12,13 +12,13 @@ echo "--- Updating packages list ---"
 sudo apt-get update
 
 echo "--- Installing base packages ---"
-sudo apt-get install -y vim curl python-software-properties build-essential
+sudo apt-get install -y vim curl python-software-properties build-essential git
 
 echo "--- MySQL time ---"
 sudo echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections
 sudo echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections
 
-sudo apt-get install mysql-server-5.5 -y
+sudo apt-get install mysql-server-5.5 libmysqlclient-dev -y
 
 echo -e "\n--- Setting up our MySQL user and db ---\n"
 mysql -u$DBUSER -p$DBPASSWD -e "CREATE DATABASE IF NOT EXISTS $DBNAME"
