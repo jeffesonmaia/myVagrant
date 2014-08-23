@@ -33,7 +33,7 @@ echo "--- Updating packages list ---"
 sudo apt-get update
 
 echo "--- Installing PHP-specific packages ---"
-sudo apt-get install php5 php5-mcrypt -y
+sudo apt-get install php5 php5-mcrypt php5-intl php5-sqlite php5-pgsql php5-curl php5-xdebug php5-gd php5-geoip php5-mcrypt php5-redis php5-memcache php5-memcached -y
 
 echo -e "\n--- Enabling mod-rewrite ---\n"
 sudo a2enmod rewrite > /dev/null 2>&1
