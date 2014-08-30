@@ -33,7 +33,7 @@ echo "--- Updating packages list ---"
 sudo apt-get update
 
 echo "--- Installing PHP-specific packages ---"
-sudo apt-get install php5 php5-mcrypt php5-intl php5-sqlite php5-pgsql php5-curl php5-xdebug php5-gd php5-geoip php5-mcrypt php5-redis php5-memcache php5-memcached -y
+sudo apt-get install php5 php5-mcrypt php5-intl php5-mysql php5-sqlite php5-pgsql php5-curl php5-xdebug php5-gd php5-geoip php5-mcrypt php5-redis php5-memcache php5-memcached -y
 
 echo -e "\n--- Enabling mod-rewrite ---\n"
 sudo a2enmod rewrite > /dev/null 2>&1
@@ -44,6 +44,14 @@ sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 echo -e "\n--- We definitly need to see the PHP errors, turning them on ---\n"
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
+
+#sudo chown -R vagrant:vagrant /var/lib/php5/
+#chown apache /var/lib/php5/sessions
+#chmod 700 /var/lib/php5/sessions
+#sed -i "s/;session.save_path = \"/var/lib/php5\"/session.save_path = \"/var/lib/php5/sessions\"/" /etc/php5/apache2/php.ini
+#sed -i "s/;session.save_path = .*/session.save_path = '/var/lib/php5/sessions'/" /etc/php5/apache2/php.ini
+sudo echo "session.save_path = \"/var/lib/php5/sessions\"" >> /etc/php5/apache2/php.ini
+sudo service apache2 restart
 
 echo -e "\n--- Installing Composer for PHP package management ---\n"
 curl --silent https://getcomposer.org/installer | php > /dev/null 2>&1
@@ -60,7 +68,7 @@ mv composer.phar /usr/local/bin/composer
 #cd /tmp
 #rm -rf node-v0.10.31.tar.gz node-v0.10.31
 
-echo -e "\n--- Installing Node ---\n"
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install nodejs -y
+#echo -e "\n--- Installing Node ---\n"
+#sudo add-apt-repository ppa:chris-lea/node.js
+#sudo apt-get update
+#sudo apt-get install nodejs -y
