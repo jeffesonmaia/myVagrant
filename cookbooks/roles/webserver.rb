@@ -11,6 +11,13 @@ override_attributes(
     'allow_remote_root' => true,
     'remove_anonymous_users' => true,
     'remove_test_database'=> true
+  },
+  'apache' => {
+  	'default_modules' => [
+  	  'status', 'alias', 'auth_basic', 'authn_core', 'authn_file', 'authz_core', 'authz_groupfile',
+  	  'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'setenvif', 'php5'
+  	],
+  	'default_site_enabled' => true
   }
 )
 
@@ -18,5 +25,6 @@ run_list(
   "recipe[apt]",
   "recipe[vim]",
   "recipe[mysql::server]",
+  "recipe[apache2]",
   "recipe[php]"
 )
