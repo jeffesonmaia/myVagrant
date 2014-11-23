@@ -17,5 +17,6 @@ override_attributes(
 run_list(
   "recipe[apt]",
   "recipe[vim]",
-  "recipe[mysql::server]"
+  "recipe[mysql::server]",
+  "recipe[php]"
 )
