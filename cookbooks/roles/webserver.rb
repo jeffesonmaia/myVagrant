@@ -26,5 +26,6 @@ run_list(
   "recipe[vim]",
   "recipe[mysql::server]",
   "recipe[apache2]",
-  "recipe[php]"
+  "recipe[php]",
+  "recipe[composer]"
 )
