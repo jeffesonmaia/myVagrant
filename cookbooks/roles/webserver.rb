@@ -34,5 +34,6 @@ run_list(
   "recipe[mysql::server]",
   "recipe[apache2]",
   "recipe[php]",
-  "recipe[composer]"
+  "recipe[composer]",
+  "recipe[git]"
 )
