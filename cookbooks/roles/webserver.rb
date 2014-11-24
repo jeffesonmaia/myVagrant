@@ -14,7 +14,8 @@ override_attributes(
   },
   'php' => {
     'packages' => [
-      'php5-cgi', 'php5', 'php5-dev', 'php5-cli', 'php-pear', 'php5-mcrypt'
+      'php5-cgi', 'php5', 'php5-dev', 'php5-cli', 'php-pear', 'php5-mcrypt', 'php5-mysql',
+      'php5-odbc', 'php5-sybase'
     ]
   },
   'apache' => {
