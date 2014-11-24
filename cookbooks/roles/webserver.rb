@@ -12,12 +12,19 @@ override_attributes(
     'remove_anonymous_users' => true,
     'remove_test_database'=> true
   },
+  'php' => {
+    'packages' => [
+      'php5-cgi', 'php5', 'php5-dev', 'php5-cli', 'php-pear', 'php5-mcrypt'
+    ]
+  },
   'apache' => {
   	'default_modules' => [
   	  'status', 'alias', 'auth_basic', 'authn_core', 'authn_file', 'authz_core', 'authz_groupfile',
-  	  'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'setenvif', 'php5'
+  	  'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'setenvif', 
+  	  'php5', 'rewrite'
   	],
-  	'default_site_enabled' => true
+  	'default_site_enabled' => true,
+  	'docroot_dir' => '/var/www/html'
   }
 )
 
