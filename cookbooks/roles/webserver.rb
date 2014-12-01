@@ -36,5 +36,6 @@ run_list(
   "recipe[apache2]",
   "recipe[php]",
   "recipe[composer]",
-  "recipe[git]"
+  "recipe[git]",
+  "recipe[nodejs]"
 )
