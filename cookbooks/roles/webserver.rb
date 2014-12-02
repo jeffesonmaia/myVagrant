@@ -26,6 +26,12 @@ override_attributes(
   	],
   	'default_site_enabled' => true,
   	'docroot_dir' => '/var/www/html'
+  },
+  'rvm' => {
+    'user_installs' => [{        
+      'user' => 'vagrant',
+      'default_ruby' => 'ruby-1.9.3-p551@193gemset'
+    }]
   }
 )
 
@@ -37,5 +43,6 @@ run_list(
   "recipe[php]",
   "recipe[composer]",
   "recipe[git]",
-  "recipe[nodejs]"
+  "recipe[nodejs]",
+  "recipe[rvm::user]"  
 )
