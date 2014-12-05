@@ -51,7 +51,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024
+    vb.cpus = 2
+  end
   #   # Don't boot with headless mode
   #   vb.gui = true
   #
@@ -102,6 +105,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   #   # You may also specify custom JSON attributes:
   #   chef.json = { mysql_password: "foo" }
+    chef.custom_config_path = "Vagrantfile.chef"
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
