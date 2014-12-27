@@ -25,9 +25,50 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.provision "chef_solo" do |chef|
     chef.cookbooks_path = "./cookbooks"
-    chef.roles_path = "./cookbooks/roles"
-    chef.add_role "webserver"
     chef.custom_config_path = "Vagrantfile.chef"
-  end
+    
+    chef.add_recipe "apt"
+    chef.add_recipe "vim"
+    chef.add_recipe "mysql::server"
+    chef.add_recipe "apache2"
+    chef.add_recipe "php"
+    chef.add_recipe "composer"
+    chef.add_recipe "git"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "rvm::user"  
 
+    chef.json = {
+      'mysql' => {
+        'server_root_password' => '1234',
+        'server_debian_password' => '1234',
+        'server_repl_password' => '1234',
+        'port' => '3306',
+        'data_dir' => '/opt/local/lib/mysql',
+        'allow_remote_root' => true,
+        'remove_anonymous_users' => true,
+        'remove_test_database'=> true
+      },
+      'php' => {
+        'packages' => [
+          'php5-cgi', 'php5', 'php5-dev', 'php5-cli', 'php-pear', 'php5-mcrypt', 'php5-mysql',
+          'php5-odbc', 'php5-sybase', 'php5-intl', 'php5-xdebug', 'php5-sqlite'
+        ]
+      },
+      'apache' => {
+        'default_modules' => [
+          'status', 'alias', 'auth_basic', 'authn_core', 'authn_file', 'authz_core', 'authz_groupfile',
+          'authz_host', 'authz_user', 'autoindex', 'dir', 'env', 'mime', 'negotiation', 'setenvif', 
+          'php5', 'rewrite'
+        ],
+        'default_site_enabled' => true,
+        'docroot_dir' => '/var/www/html'
+      },
+      'rvm' => {
+        'user_installs' => [{        
+          'user' => 'vagrant',
+          'default_ruby' => 'ruby-1.9.3-p551@193gemset'
+        }]
+      }
+    }
+  end
 end
