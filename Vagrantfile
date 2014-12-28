@@ -64,7 +64,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       'rvm' => {
         'user_installs' => [{        
           'user' => 'vagrant',
-          'default_ruby' => 'ruby-1.9.3-p551@193gemset'
+          'default_ruby' => 'ruby-1.9.3-p551',
+          'global_gems'     => [
+            { 'name'    => 'bundler' },
+            { 'name'    => 'rails', 'version' => '3.2.21' }
+          ]
         }]
       }
     }
