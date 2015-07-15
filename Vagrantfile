@@ -15,6 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "private_network", ip: "192.168.33.10"
 
   config.vm.synced_folder "./www", "/var/www/html", :nfs => false, owner: "www-data", group: "www-data"
+  config.vm.synced_folder "./", "/vagrant", :nfs => false
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 1024
